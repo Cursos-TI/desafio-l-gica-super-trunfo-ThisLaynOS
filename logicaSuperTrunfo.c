@@ -48,8 +48,7 @@ int main() {
     scanf("%f", &pib1);
 
     densidade1 = (float) Numero_populacional1 / area_km1; // Calcula densidade populacional, forçando conversao do int pra float da variavel Numero_populacional  em seguida realizando o calculo e Guardando na variavel densidade
-    pib_per_capita1 = (pib1 * 1e9) / (float) Numero_populacional1; // Converti Numero_populacional de int para float para garantir precisão no cálculo,
-    // e multipliquei o PIB (em bilhões) por 1 bilhão (1e9) para converter para valor unitário em reais,
+    pib_per_capita1 = pib1 / (float) Numero_populacional1; // Converti Numero_populacional de int para float para garantir precisão no cálculo,
     // obtendo assim o PIB per capita correto em reais por habitante
 
     super_poder1 = (float) Numero_populacional1 + area_km1 + pib1 + pib_per_capita1 + (area_km1 / (float) Numero_populacional1) + Numero_pontos_turisticos1; // Soma de todos atributos com o inverso de densidade (area_km1 / (float) Numero_populacional1) no final tudo e calculado e o valor e amazenado na variavel super_poder1
@@ -97,8 +96,7 @@ int main() {
     scanf("%f", &pib2);
 
     densidade2 = (float) Numero_populacional2 / area_km2; // Calcula densidade populacional, forçando conversao do int pra float da variavel Numero_populacional  em seguida realizando o calculo e Guardando na variavel densidade
-    pib_per_capita2 = (pib2 * 1e9) / (float) Numero_populacional2; // Converti Numero_populacional de int para float para garantir precisão no cálculo,
-    // e multipliquei o PIB (em bilhões) por 1 bilhão (1e9) para converter para valor unitário em reais,
+    pib_per_capita2 = pib2  / (float) Numero_populacional2; // Converti Numero_populacional de int para float para garantir precisão no cálculo,
     // obtendo assim o PIB per capita correto em reais por habitante
 
     super_poder2 = (float) Numero_populacional2 + area_km2 + pib2 + pib_per_capita2 + (area_km2 / (float) Numero_populacional2) + Numero_pontos_turisticos2; // Soma de todos atributos com o inverso de densidade (area_km2 / (float) Numero_populacional2) no final tudo e calculado e o valor e amazenado na variavel super_poder2
