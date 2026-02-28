@@ -4,21 +4,20 @@
 int main() {
     // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     // Dados da Carta 1
-    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-    char estado1[3];      // string (exemplo: "SC")
-    char codigo1[10];     // string
-    char cidade1[50];     // string
-    int populacao1;       // int
-    float area1;          // float
-    float pib1;           // float
-    int pontos1;          // int
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    char estado1[3];
+    char codigo1[10];
+    char cidade1[50];
+    int populacao1;
+    float area1;
+    float pib1;
+    int pontos1;
 
-    // Valores calculados
     float densidade1, pibPerCapita1;
 
     // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     // Dados da Carta 2
-    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     char estado2[3];
     char codigo2[10];
     char cidade2[50];
@@ -40,7 +39,7 @@ int main() {
     printf("Codigo da carta: ");
     scanf("%9s", codigo1);
 
-    getchar(); // limpa buffer do \n, pra não causar problemas
+    getchar(); // limpa buffer do \n
 
     printf("Nome da cidade: ");
     fgets(cidade1, sizeof(cidade1), stdin);
@@ -88,9 +87,8 @@ int main() {
     scanf("%d", &pontos2);
 
     // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-    // Calculos de densidade e pib per capita - Carta 1
-    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
+    // Calculos de densidade e pib per capita
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     densidade1 = (float)populacao1 / area1;
     pibPerCapita1 = (float)pib1 / populacao1;
 
@@ -98,8 +96,8 @@ int main() {
     pibPerCapita2 = (float)pib2 / populacao2;
 
     // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-    // Exibição(Saida) das cartas (dados + cálculos)
-    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    // Exibição das cartas
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     printf("\n_-_-_-_-_-_-_ CARTA 1 _-_-_-_-_-_-_\n");
     printf("Estado: %s\n", estado1);
     printf("Codigo: %s\n", codigo1);
@@ -122,33 +120,93 @@ int main() {
     printf("Densidade Populacional: %.2f\n", densidade2);
     printf("PIB per Capita: %.2f\n", pibPerCapita2);
 
-    // Estrutura de descisao ultilizada pra realizar comparaçoes entrem cartas
-    // Chave seletora que alterna os tipos de comparações (ex: int atributo = 1) para comparação de populações de uma carta a outra
-    int atributo = 1;
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    // NOVO - NIVEL AVENTUREIRO
+    // Menu interativo com switch para o jogador escolher o atributo
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    int opcao;
 
+    printf("\n_-_-_-_-_-_ Menu de Comparacao _-_-_-_-_-_\n");
+    printf("Escolha o atributo para comparar as cartas:\n");
+    printf("1 - Populacao\n");
+    printf("2 - Area\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos Turisticos\n");
+    printf("5 - Densidade Populacional\n");
+    printf("6 - PIB per Capita\n");
+    printf("Opcao: ");
+    scanf("%d", &opcao);
+
+    // Variaveis para armazenar os valores comparados e o nome do atributo
     float valor1 = 0.0f, valor2 = 0.0f;
-    const char *nomeAtributo = "Atributo";
+    const char *nomeAtributo = "";
 
-    if (atributo == 1) { valor1 = (float)populacao1; valor2 = (float)populacao2; nomeAtributo = "Populacao"; }
-    else if (atributo == 2) { valor1 = area1; valor2 = area2; nomeAtributo = "Area"; }
-    else if (atributo == 3) { valor1 = pib1; valor2 = pib2; nomeAtributo = "PIB"; }
-    else if (atributo == 4) { valor1 = densidade1; valor2 = densidade2; nomeAtributo = "Densidade Populacional"; }
-    else if (atributo == 5) { valor1 = pibPerCapita1; valor2 = pibPerCapita2; nomeAtributo = "PIB per Capita"; }
+    // switch seleciona qual atributo sera usado na comparacao
+    switch (opcao) {
+        case 1:
+            valor1 = (float)populacao1;
+            valor2 = (float)populacao2;
+            nomeAtributo = "Populacao";
+            break;
+        case 2:
+            valor1 = area1;
+            valor2 = area2;
+            nomeAtributo = "Area";
+            break;
+        case 3:
+            valor1 = pib1;
+            valor2 = pib2;
+            nomeAtributo = "PIB";
+            break;
+        case 4:
+            valor1 = (float)pontos1;
+            valor2 = (float)pontos2;
+            nomeAtributo = "Pontos Turisticos";
+            break;
+        case 5:
+            valor1 = densidade1;
+            valor2 = densidade2;
+            nomeAtributo = "Densidade Populacional";
+            break;
+        case 6:
+            valor1 = pibPerCapita1;
+            valor2 = pibPerCapita2;
+            nomeAtributo = "PIB per Capita";
+            break;
+        default:
+            // Trata entrada invalida - requisito de seguranca do nivel aventureiro
+            printf("Opcao invalida! Encerrando.\n");
+            return 1;
+    }
 
-    printf("\n_-_-_-_ Ring de Cartas(Comparação de Cartas)_-_-_-_-_-_ \n");
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    // Exibicao do resultado da comparacao
+    // _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+    printf("\n_-_-_-_ Ring de Cartas (Comparacao de Cartas) _-_-_-_\n");
     printf("Atributo usado: %s\n", nomeAtributo);
     printf("%s: %.2f\n", cidade1, valor1);
     printf("%s: %.2f\n", cidade2, valor2);
 
-    // Resultado
+    // Logica de comparacao com if-else aninhado
+    // Para Densidade Populacional, menor valor vence (regra especial)
+    // Para os demais atributos, maior valor vence
     if (valor1 == valor2) {
         printf("Resultado: Empate!\n");
-    } else if (atributo == 4) {
-        // Densidade: menor vence.
-        printf("Resultado: %s venceu!\n", (valor1 < valor2) ? cidade1 : cidade2);
+    } else if (opcao == 5) {
+        // Estrutura aninhada: dentro da condicao do atributo especial,
+        // verifica qual carta tem o menor valor de densidade
+        if (valor1 < valor2) {
+            printf("Resultado: %s venceu! (menor densidade)\n", cidade1);
+        } else {
+            printf("Resultado: %s venceu! (menor densidade)\n", cidade2);
+        }
     } else {
-        // Demais atributos: maior vence.
-        printf("Resultado: %s venceu!\n", (valor1 > valor2) ? cidade1 : cidade2);
+        // Para os demais atributos: maior valor vence
+        if (valor1 > valor2) {
+            printf("Resultado: %s venceu!\n", cidade1);
+        } else {
+            printf("Resultado: %s venceu!\n", cidade2);
+        }
     }
 
     return 0;
